@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Google made this-->
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="val_1" onkeypress="return validateNumber(event)" >
+    <input type="text" id="val_2" onkeypress="return validateNumber(event)" >
+    <!-- <input type="button" value="submit" id="btn_1"> -->
+    <select name="" id="mySelect" onchange="myFunction(this.value)">
+        <option value="" selected disabled hidden>Opration</option>
+        <option value="+" >+</option>
+        <option value="-" >-</option>
+        <option value="*" >*</option>
+        <option value="/">/</option>
+    </select>
+     <span style="background-color: pink;" id="firstFiled"></span>
+    <span id="operators" style="background-color: yellow;"></span>
+     <span id="secondFiled"  style="background-color: pink;"></span>&nbsp;
+    <span>Result= &nbsp; <span id="result"></span></span>
+   
+    <script>
+
+    var first = document.getElementById("val_1");
+    var second = document.getElementById("val_2");
+    // var selectBox=document.getElementById('mySelect')
+    first.addEventListener('input',function(){
+       document.getElementById("firstFiled").innerHTML=first.value;
+       myFunction(gobal_1);
+      
+    })
+    second.addEventListener('input',function(){
+        document.getElementById("secondFiled").innerHTML=second.value;
+        myFunction(gobal_1);
+    })
+    var gobal_1 ;
+    function myFunction(val){
+      gobal_1 = val;
+      // var selectValue = document.getElementById("mySelect").value;
+      
+      // document.getElementById('operators').innerHTML=selectValue ;
+      var first =document.getElementById("val_1").value;
+      var second =document.getElementById("val_2").value;
+      var number1 = parseInt(first);
+      var number2 = parseInt(second);
+       
+      var add = number1 + number2;
+      var sub = number1 - number2;
+      var mul = number1 * number2;
+      var div = number1 / number2;
+      if(val=='+'){
+        document.getElementById('result').innerHTML=add;
+      }
+       if(val=='-'){
+         document.getElementById('result').innerHTML=sub;
+         if(sub<0){
+        document.getElementById('result').innerHTML='nagative values';
+    }
+      }
+      if(val=='*'){
+         document.getElementById('result').innerHTML=mul;
+      }
+      if(val=='/'){
+         document.getElementById('result').innerHTML=div;
+      }
+   if(first==''||second==''){
+    document.getElementById('result').innerHTML='Enter Value'
+   }
+    if(first.length>0||second.length>0) {
+        var selectValue = document.getElementById("mySelect").value;
+      document.getElementById('operators').innerHTML=selectValue ;
+    }
+   
+    }
+    function validateNumber(e) {
+            const pattern = /^[0-9]$/;
+
+            return pattern.test(e.key )
+        }
+    
+    </script>
+</body>
+</html>
